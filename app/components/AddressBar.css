@@ -2,9 +2,38 @@
   width: 100%;
 }
 
+.inputWrapper button {
+  border-radius: 0;
+  border-top: 1px white solid;
+  border-bottom: 1px #EFEFEF solid;
+  border-right: 1px #EFEFEF solid;
+  border-left: 1px #EFEFEF solid;
+}
+
+.inputWrapper button:hover {
+  border-radius: 0;
+  background-color: #F5F5F5;
+  border-top: 1px #F5F5F5 solid;
+  border-bottom: 1px #EFEFEF solid;
+  border-right: 1px #EFEFEF solid;
+  border-left: 1px #EFEFEF solid;
+}
+
+.inputWrapper button:active {
+  border-radius: 0;
+  background-color: #F5F5F5;
+  border-top: 1px #F5F5F5 solid;
+  border-bottom: 1px #EFEFEF solid;
+  border-right: 1px #EFEFEF solid;
+  border-left: 1px #EFEFEF solid;
+  outline: none;
+}
+
 .input {
   border-width: 0;
   border-bottom: 1px #EFEFEF solid;
+  border-left: 1px #EFEFEF solid;
+  border-radius: 0;
   text-align: center;
 }
 

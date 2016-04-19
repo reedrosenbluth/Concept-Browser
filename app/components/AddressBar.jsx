@@ -29,6 +29,7 @@ class AddressBar extends Component {
 
 
   onFormSubmit(event, loadPage) {
+    console.log('enter');
     event.preventDefault();
     let dest = '';
     let input = addhttp(this.state.url);
@@ -40,6 +41,13 @@ class AddressBar extends Component {
     loadPage(dest);
   }
 
+  onBackClick() {
+    console.log('back');
+  }
+
+  onForwardClick() {
+    console.log('forward');
+  }
 
   render() {
     const { loadPage } = this.props;
@@ -47,8 +55,20 @@ class AddressBar extends Component {
     return (
       <form onSubmit={(e) => this.onFormSubmit(e, loadPage)}>
         <div className={`input-group ${styles.inputWrapper}`}>
+          <div className="input-group-btn">
+            <button
+              type="button"
+              className="btn btn-default"
+              onClick={this.onBackClick}
+            >{'<'}</button>
+            <button
+              type="button"
+              className="btn btn-default"
+              onClick={this.onForwardClick}
+            >{'>'}</button>
+          </div>
           <input
-            className={`form-control input-lg ${styles.input}`}
+            className={`form-control ${styles.input}`}
             type="text"
             value={this.state.url}
             onChange={this.onInputChange}
