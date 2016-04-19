@@ -109,8 +109,7 @@
     "redux": "^3.4.0",
     "redux-promise": "^0.5.3",
     "redux-thunk": "^2.0.1",
-    "source-map-support": "^0.4.0",
-    "url": "^0.11.0"
+    "source-map-support": "^0.4.0"
   },
   "devEngines": {
     "node": "4.x || 5.x",
