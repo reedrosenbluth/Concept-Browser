@@ -1,5 +1,6 @@
 .inputWrapper {
   width: 100%;
+  border-bottom: #E2E2E2 5px solid;
 }
 
 .inputWrapper button {
