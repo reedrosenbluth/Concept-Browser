@@ -14,6 +14,7 @@ class AddressBar extends Component {
     loadPage: PropTypes.func.isRequired,
     url: PropTypes.string.isRequired
   };
+  
 
   constructor(props) {
     super(props);
@@ -29,7 +30,6 @@ class AddressBar extends Component {
 
 
   onFormSubmit(event, loadPage) {
-    console.log('enter');
     event.preventDefault();
     let dest = '';
     let input = addhttp(this.state.url);
@@ -42,11 +42,13 @@ class AddressBar extends Component {
   }
 
   onBackClick() {
-    console.log('back');
+    const webview = document.getElementById('webview');
+    webview.goBack();
   }
 
   onForwardClick() {
-    console.log('forward');
+    const webview = document.getElementById('webview');
+    webview.goForward();
   }
 
   render() {
@@ -56,18 +58,19 @@ class AddressBar extends Component {
       <form onSubmit={(e) => this.onFormSubmit(e, loadPage)}>
         <div className={`input-group ${styles.inputWrapper}`}>
           <div className="input-group-btn">
-            <button
+            <a
               type="button"
               className="btn btn-default"
               onClick={this.onBackClick}
-            >{'<'}</button>
-            <button
+            >{'<'}</a>
+            <a
               type="button"
               className="btn btn-default"
               onClick={this.onForwardClick}
-            >{'>'}</button>
+            >{'>'}</a>
           </div>
           <input
+            id="addressBarInput"
             className={`form-control ${styles.input}`}
             type="text"
             value={this.state.url}

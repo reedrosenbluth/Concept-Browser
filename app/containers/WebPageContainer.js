@@ -1,7 +1,7 @@
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import WebPage from '../components/WebPage';
-import * as WebPageActions from '../actions/webPage';
+import * as WebPageActions from '../actions/addressBar';
 
 function mapStateToProps(state) {
   return {

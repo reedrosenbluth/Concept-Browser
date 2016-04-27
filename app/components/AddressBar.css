@@ -3,31 +3,31 @@
   border-bottom: #E2E2E2 4px solid;
 }
 
-.inputWrapper button {
+.inputWrapper a {
   border-radius: 0;
   border-top: 1px white solid;
   border-bottom: 1px #EFEFEF solid;
   border-right: 1px #EFEFEF solid;
   border-left: 1px #EFEFEF solid;
+  cursor: default;
 }
 
-.inputWrapper button:hover {
+.inputWrapper a:hover {
   border-radius: 0;
-  background-color: #F5F5F5;
   border-top: 1px #F5F5F5 solid;
   border-bottom: 1px #EFEFEF solid;
   border-right: 1px #EFEFEF solid;
   border-left: 1px #EFEFEF solid;
+  background-color: #F5F5F5;
 }
 
-.inputWrapper button:active {
-  border-radius: 0;
-  background-color: #F5F5F5;
-  border-top: 1px #F5F5F5 solid;
-  border-bottom: 1px #EFEFEF solid;
-  border-right: 1px #EFEFEF solid;
-  border-left: 1px #EFEFEF solid;
-  outline: none;
+.inputWrapper a:active {
+  border-radius: 0 !important;
+  border-top: 1px #F5F5F5 solid !important;
+  border-bottom: 1px #EFEFEF solid !important;
+  border-right: 1px #EFEFEF solid !important;
+  border-left: 1px #EFEFEF solid !important;
+  outline: none !important;
 }
 
 .input {
@@ -38,7 +38,14 @@
   text-align: center;
 }
 
-.form-control:focus {
-  border: none;
+.input:hover {
+  cursor: text;
+}
+
+.input:focus {
+  border-width: 0;
+  border-bottom: 1px #EFEFEF solid;
+  border-left: 1px #EFEFEF solid;
+  border-radius: 0;
   box-shadow: none;
 }
