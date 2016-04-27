@@ -1,4 +1,16 @@
+.webviewContainer {
+  height: 100%;
+}
+
 .webview {
-  height: 96vh;
+  height: 100%;
   overflow: scroll;
+}
+
+.visible {
+  display: flex
+}
+
+.hidden {
+  display: none;
 }

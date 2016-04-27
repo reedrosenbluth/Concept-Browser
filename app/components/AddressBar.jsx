@@ -1,6 +1,7 @@
 import React, { Component, PropTypes } from 'react';
 import isUrl from 'is-url';
 import styles from './AddressBar.css';
+import webPageStyles from './WebPage.css';
 
 function addhttp(urlString) {
   if (!/^(?:f|ht)tps?\:\/\//.test(urlString)) {
@@ -12,16 +13,19 @@ function addhttp(urlString) {
 class AddressBar extends Component {
   static propTypes = {
     loadPage: PropTypes.func.isRequired,
-    url: PropTypes.string.isRequired
+    newTab: PropTypes.func.isRequired,
+    tabs: PropTypes.array.isRequired
   };
   
 
   constructor(props) {
     super(props);
 
-    this.state = { url: this.props.url };
-
+    let selectedTab = this.props.tabs.selectedTab;
+    // this.state = { url: this.props.tabs.tabs[selectedTab].url };
+    
     this.onInputChange = this.onInputChange.bind(this);
+    this.onNewTab = this.onNewTab.bind(this);
   }
 
   onInputChange(event) {
@@ -38,21 +42,26 @@ class AddressBar extends Component {
     } else {
       dest = `https://www.google.com/search?q=${encodeURI(this.state.url)}`;
     }
-    loadPage(dest);
+    loadPage(dest, this.props.tabs.selectedTab);
   }
 
   onBackClick() {
-    const webview = document.getElementById('webview');
+    const webview = document.getElementsByClassName(`webview ${webPageStyles.visible}`).item(0);
     webview.goBack();
   }
 
   onForwardClick() {
-    const webview = document.getElementById('webview');
+    const webview = document.getElementsByClassName(`webview ${webPageStyles.visible}`).item(0);
     webview.goForward();
+  }
+  
+  onNewTab() {
+    this.props.newTab();
   }
 
   render() {
     const { loadPage } = this.props;
+    const { tabs, selectedTab } = this.props.tabs;
 
     return (
       <form onSubmit={(e) => this.onFormSubmit(e, loadPage)}>
@@ -62,20 +71,25 @@ class AddressBar extends Component {
               type="button"
               className="btn btn-default"
               onClick={this.onBackClick}
-            >{'<'}</a>
+              >{'<'}</a>
             <a
               type="button"
               className="btn btn-default"
               onClick={this.onForwardClick}
-            >{'>'}</a>
+              >{'>'}</a>
+            <a
+              type="button"
+              className="btn btn-default"
+              onClick={this.onNewTab}
+              >{'+'}</a>
           </div>
           <input
             id="addressBarInput"
             className={`form-control ${styles.input}`}
             type="text"
-            value={this.state.url}
+            value={tabs[selectedTab].url}
             onChange={this.onInputChange}
-          />
+            />
         </div>
       </form>
     );

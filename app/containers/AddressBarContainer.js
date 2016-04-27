@@ -5,7 +5,7 @@ import * as AddressBarActions from '../actions/addressBar';
 
 function mapStateToProps(state) {
   return {
-    url: state.url
+    tabs: state.tabs
   };
 }
 

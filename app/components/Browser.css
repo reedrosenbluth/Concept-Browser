@@ -1,0 +1,17 @@
+.main {
+  width: 100%;
+}
+
+.tabs {
+  width: 3%;
+  height: 100vh;
+  background-color: #E2E2E2;
+  float: left;
+}
+
+.webpage {
+  float: left;
+  width: 97%;
+  height: 100vh;
+}
+  

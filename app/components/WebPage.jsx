@@ -2,22 +2,11 @@ import React, { Component, PropTypes } from 'react';
 import url from 'url';
 import styles from './WebPage.css';
 
-export default class WebPage extends Component {
-  static propTypes = {
-    loadPage: PropTypes.func.isRequired,
-    url: PropTypes.string.isRequired
-  };
-
-  constructor(props) {
-    super(props);
-
-    this.state = { url: '' };
-  }
-
-  componentDidMount() {
-    const webview = document.getElementById('webview');
-    const addressBar = document.getElementById('addressBarInput');
-    
+function addListeners() {
+  const webviews = [].slice.call(document.getElementsByClassName('webview'));
+  const addressBar = document.getElementById('addressBarInput');
+  
+  webviews.map((webview, i) => {
     webview.addEventListener('did-finish-load', (event) => {
       let urlString = webview.getURL();
       let host = url.parse(urlString).host;
@@ -30,18 +19,40 @@ export default class WebPage extends Component {
         console.log(contents);
       }
     });
+  });
+}
+
+export default class WebPage extends Component {
+  static propTypes = {
+    loadPage: PropTypes.func.isRequired,
+    tabs: PropTypes.array.isRequired
+  };
+  
+  
+  componentDidMount() {
+    addListeners();
+  }
+
+  componentDidUpdate() {
+    addListeners();
   }
 
   render() {
-    const { url } = this.props;
-
-    return (
-      <div>
-        <webview
-          id="webview"
-          className={styles.webview}
-          src={url}
+    const { selectedTab, tabs } = this.props.tabs;
+    
+    let webviews = tabs.map((tab, i) => {
+      let visible = (selectedTab === i) ? styles.visible : styles.hidden;
+      return <webview
+        id="webview"
+        key={i}
+        className={`${styles.webview} webview ${visible}`}
+        src={tabs[i].url}
         ></webview>
+    });
+    
+    return (
+      <div className={styles.webviewContainer}>
+        {webviews}
       </div>
     );
   }

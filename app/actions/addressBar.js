@@ -1,16 +1,16 @@
 export const LOAD_PAGE = 'LOAD_PAGE';
-export const FOLLOW_LINK = 'FOLLOW_LINK';
+export const NEW_TAB = 'NEW_TAB';
 
-export function loadPage(url) {
+export function loadPage(url, tab) {
   return {
     type: LOAD_PAGE,
-    url: url
+    url: url,
+    index: tab
   };
 }
 
-export function followLink(url) {
+export function newTab() {
   return {
-    type: FOLLOW_LINK,
-    url: url
+    type: NEW_TAB
   };
 }

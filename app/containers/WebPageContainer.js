@@ -5,7 +5,8 @@ import * as WebPageActions from '../actions/addressBar';
 
 function mapStateToProps(state) {
   return {
-    url: state.url
+    selectedTab: state.selectedTab,
+    tabs: state.tabs
   };
 }
 
