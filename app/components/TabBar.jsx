@@ -9,6 +9,7 @@ export default class TabBar extends Component {
   
   onTabClick(index) {
     this.props.switchTab(index);
+    // TODO store the curddrent url as a separate field
   }
   
   render() {
@@ -20,7 +21,7 @@ export default class TabBar extends Component {
         key={i}
         className={`list-group-item ${styles.tab} ${selected}`}
         onClick={() => this.onTabClick(i)}
-        >🍥</a>;
+        ><img src={`http://www.google.com/s2/favicons?domain=${tab.url}`}></img></a>
     });
     
     return (

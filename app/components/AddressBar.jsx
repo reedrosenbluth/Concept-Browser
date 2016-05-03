@@ -14,6 +14,7 @@ class AddressBar extends Component {
   static propTypes = {
     loadPage: PropTypes.func.isRequired,
     newTab: PropTypes.func.isRequired,
+    switchTab: PropTypes.func.isRequired,
     tabs: PropTypes.array.isRequired
   };
   
@@ -22,27 +23,31 @@ class AddressBar extends Component {
     super(props);
 
     let selectedTab = this.props.tabs.selectedTab;
-    // this.state = { url: this.props.tabs.tabs[selectedTab].url };
+    this.state = { url: this.props.tabs.tabs[selectedTab].url };
     
     this.onInputChange = this.onInputChange.bind(this);
     this.onNewTab = this.onNewTab.bind(this);
   }
 
   onInputChange(event) {
-    this.setState({ url: event.target.value });
+    this.props.loadPage(event.target.value, this.props.tabs.selectedTab);
   }
 
 
   onFormSubmit(event, loadPage) {
+    const { tabs, selectedTab } = this.props.tabs;
+    
     event.preventDefault();
     let dest = '';
-    let input = addhttp(this.state.url);
+    let input = addhttp(tabs[selectedTab].url);
     if (isUrl(input)) {
       dest = input;
     } else {
-      dest = `https://www.google.com/search?q=${encodeURI(this.state.url)}`;
+      dest = `https://www.google.com/search?q=${encodeURI(tabs[selectedTab].url)}`;
     }
-    loadPage(dest, this.props.tabs.selectedTab);
+    
+    const webview = document.getElementsByClassName(`webview ${webPageStyles.visible}`).item(0);
+    webview.loadURL(dest);
   }
 
   onBackClick() {
@@ -57,6 +62,7 @@ class AddressBar extends Component {
   
   onNewTab() {
     this.props.newTab();
+    this.props.switchTab(this.props.tabs.tabs.length)
   }
 
   render() {

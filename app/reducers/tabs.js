@@ -3,7 +3,7 @@ import { SWITCH_TAB } from '../actions/tabBar';
 
 const initState = {
   selectedTab: 0,
-  tabs: [{ url: 'http://google.com' }, { url: 'http://reedrosenbluth.com' }]
+  tabs: [{ url: 'http://google.com' }]
 };
 
 export default function loadPage(state = initState, action) {
