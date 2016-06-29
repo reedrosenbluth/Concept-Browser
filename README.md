@@ -1,6 +1,8 @@
 # Concept Browser
 An experimental browser built with web technologies (React + Redux + Electron).
 
+![Screenshot](screenshot.png)
+
 ## Install Dependencies
 ```bash
 $ npm install
