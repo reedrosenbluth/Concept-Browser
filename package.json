@@ -97,7 +97,6 @@
   "dependencies": {
     "css-modules-require-hook": "^4.0.0",
     "electron-debug": "^0.6.0",
-    "eslint-config-airbnb": "^7.0.0",
     "font-awesome": "^4.6.1",
     "is-url": "^1.2.1",
     "postcss": "^5.0.19",
