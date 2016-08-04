@@ -1,0 +1,167 @@
+var _evancz$elm_todomvc$Browser$webview = function (attributes) {
+	return A3(
+		_elm_lang$html$Html$node,
+		'webview',
+		attributes,
+		_elm_lang$core$Native_List.fromArray(
+			[]));
+};
+var _evancz$elm_todomvc$Browser$update = F2(
+	function (msg, model) {
+		var _p0 = msg;
+		switch (_p0.ctor) {
+			case 'NoOp':
+				return A2(
+					_elm_lang$core$Platform_Cmd_ops['!'],
+					model,
+					_elm_lang$core$Native_List.fromArray(
+						[]));
+			case 'UpdateUrl':
+				return A2(
+					_elm_lang$core$Platform_Cmd_ops['!'],
+					_elm_lang$core$Native_Utils.update(
+						model,
+						{url: _p0._0}),
+					_elm_lang$core$Native_List.fromArray(
+						[]));
+			default:
+				return A2(
+					_elm_lang$core$Platform_Cmd_ops['!'],
+					_elm_lang$core$Native_Utils.update(
+						model,
+						{viewing: _p0._0}),
+					_elm_lang$core$Native_List.fromArray(
+						[]));
+		}
+	});
+var _evancz$elm_todomvc$Browser$emptyModel = {url: 'http://reedrosenbluth.com', viewing: 'http://reedrosenbluth.com'};
+var _evancz$elm_todomvc$Browser$init = function (savedModel) {
+	return A2(
+		_elm_lang$core$Platform_Cmd_ops['!'],
+		A2(_elm_lang$core$Maybe$withDefault, _evancz$elm_todomvc$Browser$emptyModel, savedModel),
+		_elm_lang$core$Native_List.fromArray(
+			[]));
+};
+var _evancz$elm_todomvc$Browser$setStorage = _elm_lang$core$Native_Platform.outgoingPort(
+	'setStorage',
+	function (v) {
+		return {url: v.url, viewing: v.viewing};
+	});
+var _evancz$elm_todomvc$Browser$updateWithStorage = F2(
+	function (msg, model) {
+		var _p1 = A2(_evancz$elm_todomvc$Browser$update, msg, model);
+		var newModel = _p1._0;
+		var cmds = _p1._1;
+		return {
+			ctor: '_Tuple2',
+			_0: newModel,
+			_1: _elm_lang$core$Platform_Cmd$batch(
+				_elm_lang$core$Native_List.fromArray(
+					[
+						_evancz$elm_todomvc$Browser$setStorage(newModel),
+						cmds
+					]))
+		};
+	});
+var _evancz$elm_todomvc$Browser$focus = _elm_lang$core$Native_Platform.outgoingPort(
+	'focus',
+	function (v) {
+		return v;
+	});
+var _evancz$elm_todomvc$Browser$Model = F2(
+	function (a, b) {
+		return {url: a, viewing: b};
+	});
+var _evancz$elm_todomvc$Browser$UpdateViewing = function (a) {
+	return {ctor: 'UpdateViewing', _0: a};
+};
+var _evancz$elm_todomvc$Browser$UpdateUrl = function (a) {
+	return {ctor: 'UpdateUrl', _0: a};
+};
+var _evancz$elm_todomvc$Browser$NoOp = {ctor: 'NoOp'};
+var _evancz$elm_todomvc$Browser$onEnter = function (msg) {
+	var tagger = function (code) {
+		return _elm_lang$core$Native_Utils.eq(code, 13) ? msg : _evancz$elm_todomvc$Browser$NoOp;
+	};
+	return A2(
+		_elm_lang$html$Html_Events$on,
+		'keydown',
+		A2(_elm_lang$core$Json_Decode$map, tagger, _elm_lang$html$Html_Events$keyCode));
+};
+var _evancz$elm_todomvc$Browser$view = function (model) {
+	return A2(
+		_elm_lang$html$Html$div,
+		_elm_lang$core$Native_List.fromArray(
+			[
+				_elm_lang$html$Html_Attributes$class('wrapper')
+			]),
+		_elm_lang$core$Native_List.fromArray(
+			[
+				A2(
+				_elm_lang$html$Html$div,
+				_elm_lang$core$Native_List.fromArray(
+					[
+						_elm_lang$html$Html_Attributes$id('navbar')
+					]),
+				_elm_lang$core$Native_List.fromArray(
+					[
+						A2(
+						_elm_lang$html$Html$input,
+						_elm_lang$core$Native_List.fromArray(
+							[
+								_elm_lang$html$Html_Attributes$id('url-input'),
+								_elm_lang$html$Html_Attributes$value(model.url),
+								_elm_lang$html$Html_Events$onInput(_evancz$elm_todomvc$Browser$UpdateUrl),
+								_evancz$elm_todomvc$Browser$onEnter(
+								_evancz$elm_todomvc$Browser$UpdateViewing(model.url))
+							]),
+						_elm_lang$core$Native_List.fromArray(
+							[]))
+					])),
+				A2(
+				_elm_lang$html$Html$div,
+				_elm_lang$core$Native_List.fromArray(
+					[
+						_elm_lang$html$Html_Attributes$id('webviews')
+					]),
+				_elm_lang$core$Native_List.fromArray(
+					[
+						_evancz$elm_todomvc$Browser$webview(
+						_elm_lang$core$Native_List.fromArray(
+							[
+								_elm_lang$html$Html_Attributes$src(model.viewing)
+							]))
+					]))
+			]));
+};
+var _evancz$elm_todomvc$Browser$main = {
+	main: _elm_lang$html$Html_App$programWithFlags(
+		{
+			init: _evancz$elm_todomvc$Browser$init,
+			view: _evancz$elm_todomvc$Browser$view,
+			update: _evancz$elm_todomvc$Browser$updateWithStorage,
+			subscriptions: function (_p2) {
+				return _elm_lang$core$Platform_Sub$none;
+			}
+		}),
+	flags: _elm_lang$core$Json_Decode$oneOf(
+		_elm_lang$core$Native_List.fromArray(
+			[
+				_elm_lang$core$Json_Decode$null(_elm_lang$core$Maybe$Nothing),
+				A2(
+				_elm_lang$core$Json_Decode$map,
+				_elm_lang$core$Maybe$Just,
+				A2(
+					_elm_lang$core$Json_Decode$andThen,
+					A2(_elm_lang$core$Json_Decode_ops[':='], 'url', _elm_lang$core$Json_Decode$string),
+					function (url) {
+						return A2(
+							_elm_lang$core$Json_Decode$andThen,
+							A2(_elm_lang$core$Json_Decode_ops[':='], 'viewing', _elm_lang$core$Json_Decode$string),
+							function (viewing) {
+								return _elm_lang$core$Json_Decode$succeed(
+									{url: url, viewing: viewing});
+							});
+					}))
+			]))
+};
