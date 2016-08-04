@@ -1,21 +1,40 @@
-# TodoMVC in Elm using Electron (updated for Elm 0.17) - 
+# Concept Browser
+An experimental browser built with web technologies (React + Redux + Electron).
 
-Run Elm in [Electron](http://electron.atom.io/)!
+![Screenshot](screenshot.png)
 
-Electron is a way to package web apps into a cross platform desktop application and Elm is a fascinating new way of writing front end code.  
-
-You must have the [elm platform](http://elm-lang.org/install) installed as well as [electron](http://electron.atom.io/).
-
-# Running the thing
-Compile the elm file into javascript. 
+## Install Dependencies
 ```bash
-elm-make Todo.elm --output elm.js
-
+$ npm install
 ```
 
-Then run electron on the current directory.
+## Run
 ```bash
-electron .
+$ npm run dev
 ```
 
+## Package
+```bash
+$ npm run package
+```
 
+To package apps for all platforms:
+```bash
+$ npm run package-all
+```
+
+## DevTools
+
+#### Toggle Chrome DevTools
+
+- OS X: <kbd>Cmd</kbd> <kbd>Alt</kbd> <kbd>I</kbd> or <kbd>F12</kbd>
+- Linux: <kbd>Ctrl</kbd> <kbd>Shift</kbd> <kbd>I</kbd> or <kbd>F12</kbd>
+- Windows: <kbd>Ctrl</kbd> <kbd>Shift</kbd> <kbd>I</kbd> or <kbd>F12</kbd>
+
+*See [electron-debug](https://github.com/sindresorhus/electron-debug) for more information.*
+
+#### Toggle Redux DevTools
+
+- All platforms: <kbd>Ctrl+H</kbd>
+
+*See [redux-devtools-dock-monitor](https://github.com/gaearon/redux-devtools-dock-monitor) for more information.*
