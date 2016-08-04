@@ -1,5 +1,5 @@
 # Concept Browser
-An experimental browser built with web technologies (React + Redux + Electron).
+An experimental browser built with Elm.
 
 ![Screenshot](screenshot.png)
 
